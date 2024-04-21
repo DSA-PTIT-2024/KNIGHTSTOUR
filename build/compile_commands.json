@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/hunga/Desktop/KnightsTour/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -o CMakeFiles\\KNIGHTSTOUR.dir\\main.cpp.obj -c C:\\Users\\hunga\\Desktop\\KnightsTour\\main.cpp",
+  "file": "C:/Users/hunga/Desktop/KnightsTour/main.cpp",
+  "output": "CMakeFiles/KNIGHTSTOUR.dir/main.cpp.obj"
+}
+]
