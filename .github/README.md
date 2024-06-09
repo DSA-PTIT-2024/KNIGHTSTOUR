@@ -21,6 +21,7 @@
 ## :hammer: Build with
 
 ![C++](https://img.shields.io/badge/C++-17-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=00599C)
+
 ![CMake](https://img.shields.io/badge/CMake-3.21-blue?style=flat&logo=cmake&logoColor=#064F8C)
 
 ## :pushpin: Description
