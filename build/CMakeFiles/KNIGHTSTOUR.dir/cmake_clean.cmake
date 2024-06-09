@@ -1,13 +1,13 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/KNIGHTSTOUR.dir/main.cpp.obj"
-  "CMakeFiles/KNIGHTSTOUR.dir/main.cpp.obj.d"
-  "KNIGHTSTOUR.exe"
-  "KNIGHTSTOUR.exe.manifest"
-  "KNIGHTSTOUR.pdb"
-  "libKNIGHTSTOUR.dll.a"
+  "CMakeFiles/KnightsTour.dir/main.cpp.obj"
+  "CMakeFiles/KnightsTour.dir/main.cpp.obj.d"
+  "KnightsTour.exe"
+  "KnightsTour.exe.manifest"
+  "KnightsTour.pdb"
+  "libKnightsTour.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.
 foreach(lang CXX)
-  include(CMakeFiles/KNIGHTSTOUR.dir/cmake_clean_${lang}.cmake OPTIONAL)
+  include(CMakeFiles/KnightsTour.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

@@ -1,108 +1,167 @@
 #include <iostream>
-#include <iomanip>
-#include <windows.h> 
+#include <string>
+#include <windows.h>
+
 using namespace std;
 #define delay 0
-bool q = false;
+bool result = false;
+const std::string tittle = "*** BAI 2.1 : BAI TOAN MA DI TUAN ***\n";
 
 // di theo chieu kim dong ho
 // int a[8] = { 2, 2, 1, -1, -2, -2, -1, 1 };
 // int b[8] = { 1, -1, -2, -2, -1, 1, 2, 2 };
 // di theo chieu nguoc chieu kim dong ho
-int a[8] = { 2, 2, 1, -1, -2, -2, -1, 1 };
-int b[8] = { 1, -1, -2, -2, -1, 1, 2, 2 };
+int a[8] = {2, 2, 1, -1, -2, -2, -1, 1};
+int b[8] = {1, -1, -2, -2, -1, 1, 2, 2};
 
+void getinput(int&, int&, int&);
+void initChessBoard(int**, int, int, int);
+void drawchessboard(int);
+void moveknight(int**, int, int, int, int);
 void gotoxy(int, int);
-void textcolor(int);
-void Di(int**, int, int, int, int);
-void VeBanCo(int);
-void init(int**, int);
+void settextcolor(int);
 
-int main() {
-    textcolor(6);
-    cout << "*** BAI 2.1 : BAI TOAN MA DI TUAN ***\n";
-    int N; cout << "Nhap kich thuoc ban co: ";
-    cin >> N; system("cls");
-    while (N < 1) {
-        cout << "Kich thuoc khong hop le\n" << "Nhap lai kich thuoc ban co: ";
-        cin >> N; system("cls");
-    }
+int main()
+{
+    settextcolor(6);
+    cout << tittle;
+    int sizeOfChessBoard, xPosition, yPosition;
 
-    int x_chon, y_chon; cout << "Nhap toa do a, b de bat dau (a,b) : ";
-    cin >> x_chon >> y_chon; system("cls");
-    while (x_chon < 1 || x_chon > N || y_chon < 1 || y_chon > N) {
-        cout << "Tao do khong hop le\n" << "Nhap lai toa do a, b (a,b) : ";
-        cin >> x_chon >> y_chon; system("cls");
-    }
+    getinput(sizeOfChessBoard, xPosition, yPosition);
 
-    int** BanCo = new int* [N + 1];
-    init(BanCo, N);
+    int** chessBoard = new int*[sizeOfChessBoard + 1];
+    initChessBoard(chessBoard, sizeOfChessBoard, xPosition, yPosition);
+    drawchessboard(sizeOfChessBoard);
 
-    textcolor(3);
-    cout << "- Ban co co kich thuoc " << N << "x" << N << endl
-        << "- Bat dau tu toa do (" << x_chon << "," << y_chon << ")\n"
-        << "- Quan ma di chuyen voi do delay la " << delay << "ms\n";
-    gotoxy(0, 5);
-    textcolor(13);
-    VeBanCo(N);
-
-    gotoxy(2 + N * 4, 6);
+    gotoxy(2 + sizeOfChessBoard * 4, 6);
     cout << "Buoc di hien tai cua quan ma la :";
+    gotoxy(0, 4);
+    cout << "Quan ma dang di chuyen...";
+    settextcolor(14);
+    moveknight(chessBoard, xPosition - 3, yPosition - 2, 1, sizeOfChessBoard);
+    gotoxy(0, 4);
 
-    gotoxy(0, 4); cout << "Quan ma dang di chuyen...";
-    textcolor(14);
-    Di(BanCo, x_chon - 3, y_chon - 2, 1, N);
-    gotoxy(0, 4); cout << "Quan ma da di chuyen xong\n";
-
-    gotoxy(0, 7 + N * 2);
-    textcolor(7);
+    cout << "Quan ma da di chuyen xong\n";
+    gotoxy(0, 7 + sizeOfChessBoard * 2);
+    settextcolor(7);
     cout << "Ket qua: ";
-    if (q == false) {
-        textcolor(12);
+    if (result == false)
+    {
+        settextcolor(12);
         cout << "Khong co cach di chuyen nao di het ban co\n";
     }
-    else {
-        textcolor(10);
-        cout << "Da di het " << N * N << " buoc\n\n";
+    else
+    {
+        settextcolor(10);
+        cout << "Da di het " << sizeOfChessBoard * sizeOfChessBoard << " buoc\n\n";
     }
 
-    delete[] BanCo;
-    textcolor(7);
+    delete[] chessBoard;
+    settextcolor(7);
     system("pause");
     return 0;
 }
 
+/******************************************************************************************************/
 
-///////////////////////////////////////////////////////////////////////////////////////
-void Di(int** BanCo, int x, int y, int n, int N) {
-    int u, v;
-    for (int i = 0; i <= 7; i++) {
+void getinput(int& sizeOfChessBoard, int& xPosition, int& yPosition)
+{
+    bool accept = false;
+    do
+    {
+        cout << "Nhap kich thuoc ban co: ";
+        cin >> sizeOfChessBoard;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(32767, '\n');
+        }
+
+        if (sizeOfChessBoard > 10)
+        {
+            cout << "Canh bao: Kich thuoc ban co qua lon, co the lam cham chuong trinh\n"
+                 << "Ban co chac chan muon tiep tuc khong? (Y/N): ";
+
+            std::string choice;
+            cin.ignore();
+            getline(cin, choice);
+
+            auto isYes = choice.find("Y") != std::string::npos || choice.find("y") != std::string::npos;
+
+            if (!isYes)
+            {
+                cout << "Nhap lai kich thuoc ban co: ";
+                cout << "\b";
+                continue;
+            }
+
+            break;
+        }
+
+        if (sizeOfChessBoard < 1)
+        {
+            cout << "Kich thuoc ban co khong hop le\n";
+        }
+
+        accept = sizeOfChessBoard >= 1;
+    } while (!accept);
+
+    accept = false;
+    do
+    {
+        cout << "Nhap toa do a, b de bat dau (a,b) : ";
+        cin >> xPosition >> yPosition;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore(32767, '\n');
+        }
+        accept = xPosition >= 1 && xPosition <= sizeOfChessBoard && yPosition >= 1 && yPosition <= sizeOfChessBoard;
+        if (!accept)
+        {
+            cout << "Toa do khong hop le\n";
+        }
+    } while (!accept);
+    system("cls");
+}
+void moveknight(int** chessBoard, int x, int y, int n, int N)
+{
+    for (int i = 0; i <= 7; i++)
+    {
         int u = x + a[i];
         int v = y + b[i];
-        if (u >= 0 && u < N && v >= 0 && v < N && BanCo[u][v] == 0) {
-            BanCo[u][v] = n;
+        if (u >= 0 && u < N && v >= 0 && v < N && chessBoard[u][v] == 0)
+        {
+            chessBoard[u][v] = n;
             gotoxy(1 + u * 4, 6 + v * 2);
             Sleep(delay);
             cout << n;
             gotoxy(36 + N * 4, 6);
             cout << n;
-            if (n == N * N) {
-                q = true;
+            if (n == N * N)
+            {
+                result = true;
             }
-            if (q == false) {
-                Di(BanCo, u, v, n + 1, N);
+            if (result == false)
+            {
+                moveknight(chessBoard, u, v, n + 1, N);
             }
-            if (q == true) {
+            if (result == true)
+            {
                 return;
             }
-            BanCo[u][v] = 0;
+            chessBoard[u][v] = 0;
             gotoxy(1 + u * 4, 6 + v * 2);
-            Sleep(delay); cout << "  ";
+            Sleep(delay);
+            cout << "  ";
         }
     }
 }
 
-void textcolor(int x) {
+void settextcolor(int x)
+{
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), x);
 }
 
@@ -114,29 +173,46 @@ void gotoxy(int a, int b)
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void VeBanCo(int N) {
-    for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= N; j++) {
-            cout << "+---";
-            if (j == N) cout << "+\n";
-        }
-        for (int j = 1; j <= N; j++) {
-            cout << "|   ";
-            if (j == N) cout << "|\n";
-        }
+void drawchessboard(int sizeOfChessBoard)
+{
+    gotoxy(0, 5);
+    settextcolor(13);
 
+    for (int i = 1; i <= sizeOfChessBoard; i++)
+    {
+        for (int j = 1; j <= sizeOfChessBoard; j++)
+        {
+            cout << "+---";
+            if (j == sizeOfChessBoard)
+                cout << "+\n";
+        }
+        for (int j = 1; j <= sizeOfChessBoard; j++)
+        {
+            cout << "|   ";
+            if (j == sizeOfChessBoard)
+                cout << "|\n";
+        }
     }
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= sizeOfChessBoard; i++)
+    {
         cout << "+---";
-        if (i == N) cout << "+\n";
+        if (i == sizeOfChessBoard)
+            cout << "+\n";
     }
 }
 
-void init(int** BanCo, int N) {
-    for (int i = 0; i < (N + 1); i++) {
-        BanCo[i] = new int[N];
-        for (int j = 0; j < (N + 1); j++) {
-            BanCo[i][j] = 0;
+void initChessBoard(int** chessBoard, int sizeOfChessBoard, int xPosition, int yPosition)
+{
+    settextcolor(3);
+    cout << "- Ban co co kich thuoc " << sizeOfChessBoard << "x" << sizeOfChessBoard << endl
+         << "- Bat dau tu toa do (" << xPosition << "," << yPosition << ")\n"
+         << "- Quan ma di chuyen voi do delay la " << delay << "ms\n";
+    for (int i = 0; i < (sizeOfChessBoard + 1); i++)
+    {
+        chessBoard[i] = new int[sizeOfChessBoard];
+        for (int j = 0; j < (sizeOfChessBoard + 1); j++)
+        {
+            chessBoard[i][j] = 0;
         }
     }
 }

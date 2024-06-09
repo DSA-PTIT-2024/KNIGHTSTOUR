@@ -1,11 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
-project(KNIGHTSTOUR VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.21)
+project(KnightsTour VERSION 1.0.0 LANGUAGES CXX)
 
-include(CTest)
-enable_testing()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+include(GNUInstallDirs)
 
-add_executable(KNIGHTSTOUR main.cpp)
+add_executable(KnightsTour main.cpp)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+
