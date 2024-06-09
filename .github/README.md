@@ -28,6 +28,25 @@
 
 Đây là chương trình giải bài toán `Knight's Tour`, là một phần của đồ án môn học **Cấu trúc dữ liệu và giải thuật**, tại trường **Học viện Công nghệ Bưu chính Viễn thông Cơ sở tại TP.HCM**, dưới sự hướng dẫn của giảng viên **cô Dương Thanh Thảo**.
 
+- Yêu cầu bài toán:
+
+> - Cho bàn cờ có kích thước n x n ô:
+> - Xây dựng chức năng cho phép người dùng nhập các thông tin:
+>
+>   - Kích thước bàn cờ n
+>   - Vị trí xuất phát của con mã là ô **(u,v) với u, v <= n-1**
+>
+> a. Dùng mảng 2 chiều có kích thước n x n để lưu trữ bàn cờ
+> b. Viết chương trình liệt kê các nước đi của con mã để nó đi qua tất cả các ô của bàn cờ, mỗi ô đúng 1 lần.
+> c. Hiển thị kết quả các nước đi của con mã theo định dạng:
+>
+> - k : (u,v)  -> con mã đi nước thứ k ở ô (u,v).
+
+  :bulb: **Note:**
+  >
+  > 1. Để cải thiện về mặt liên tưởng, nhóm đề xuất thay vì hiển thị kết quả dưới dạng danh sách, nhóm quyết định hiển thị kết quả trên bàn cờ.
+  > 2. Nhóm thay đổi xuất phát của quân mã từ `ô (u,v) với u, v <= n-1` thành `ô (u,v) với u, v <= n` để đơn giản hóa việc nhập liệu và hiển thị kết quả.
+
 ## :tada: Features
 
 - Mô tả:
