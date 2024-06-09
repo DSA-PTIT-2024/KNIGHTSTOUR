@@ -1,7 +1,10 @@
 # KnightsTour
 
 <div align="center">
-    <figure> <img src="./assets/images/Knights-Tour-Animation.gif" alt="KnightsTour"><figcaption>Knight's Tour Animation</figcaption> </figure>
+<a href="https://en.wikipedia.org/wiki/Knight%27s_tour">
+    <img src="./assets/images/Knights-Tour-Animation.gif" alt="Knight's Tour">
+</a>
+<h6> Knight's Tour Animation </h6>
 </div>
 
 <details>
