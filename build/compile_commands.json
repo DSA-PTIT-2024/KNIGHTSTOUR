@@ -1,8 +1,0 @@
-[
-{
-  "directory": "C:/Users/PNguyen/Desktop/KnightsTour/build",
-  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++17 -o CMakeFiles\\KnightsTour.dir\\main.cpp.obj -c C:\\Users\\PNguyen\\Desktop\\KnightsTour\\main.cpp",
-  "file": "C:/Users/PNguyen/Desktop/KnightsTour/main.cpp",
-  "output": "CMakeFiles/KnightsTour.dir/main.cpp.obj"
-}
-]

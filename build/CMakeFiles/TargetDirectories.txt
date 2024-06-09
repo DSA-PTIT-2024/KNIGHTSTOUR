@@ -1,3 +1,0 @@
-C:/Users/PNguyen/Desktop/KnightsTour/build/CMakeFiles/KnightsTour.dir
-C:/Users/PNguyen/Desktop/KnightsTour/build/CMakeFiles/edit_cache.dir
-C:/Users/PNguyen/Desktop/KnightsTour/build/CMakeFiles/rebuild_cache.dir
