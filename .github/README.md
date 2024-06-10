@@ -51,7 +51,6 @@
 
 - Mô tả:
   - Chương trình giải bài toán `Knight's Tour` có giao diện đồ họa console.
-  - Chương trình sử dụng thuật toán **Warnsdorff** để giải bài toán.
 - Cách hoạt động:
   - `Click vào file KnightsTour.exe` để chạy chương trình.
   - Người dùng nhập vào kích thước bàn cờ .
